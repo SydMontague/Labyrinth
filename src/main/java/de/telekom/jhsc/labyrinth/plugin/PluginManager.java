@@ -14,12 +14,15 @@ import java.util.Map;
 
 public class PluginManager {
 
-	public static Plugin loadPlugin(File file) throws FileNotFoundException {
+	@SuppressWarnings("resource")
+    public static Plugin loadPlugin(File file) throws FileNotFoundException {
 		if (!file.exists())
 			throw new FileNotFoundException();
 
-		try (URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() },
-				PluginManager.class.getClassLoader())) {
+		try {
+		    URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() },
+	                PluginManager.class.getClassLoader());
+		    
 			PluginProperties properties = loadPluginProperties(loader.findResource("plugin.properties").openStream());
 
 			if (properties.getMainClass().startsWith("de.telekom.jhsc.labyrinth"))
