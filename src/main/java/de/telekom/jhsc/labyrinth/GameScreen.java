@@ -26,6 +26,7 @@ import de.telekom.jhsc.labyrinth.plugin.PluginManager;
 class GameScreen extends ScreenAdapter {
 	private static final String PLUGIN_PATH = ".\\solution.jar";
 
+	private static final float MOVEMENT_SPEED = 1.00f;
 	private static final float SPEED_MOD = 2.5f;
 	private static final float STEP = 100;
 	private static final int LINE_WIDTH = 5;
@@ -112,7 +113,7 @@ class GameScreen extends ScreenAdapter {
 
 		crawlerNode.setPosition(crawler.getX() * STRIDE - LINE_WIDTH, crawler.getY() * STRIDE - LINE_WIDTH);
 		action.setPosition(crawler.getX() * STRIDE - LINE_WIDTH, crawler.getY() * -STRIDE - LINE_WIDTH);
-		action.setDuration(1);
+		action.setDuration(MOVEMENT_SPEED);
 
 		crawlerNode.addAction(action);
 		grid.addActor(crawlerNode);
