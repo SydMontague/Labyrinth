@@ -16,14 +16,14 @@ class Crawler {
 		if (!getCurrentTile().isPassable(dir))
 			return false;
 
+        if (getCurrentTile().isObject()) {
+            labyrinth.setObjectFound(x, y);
+            objectsFound++;
+        }
+		
 		moveCount++;
 		x += dir.xMod;
 		y += dir.yMod;
-
-		if (getCurrentTile().isObject()) {
-			labyrinth.setObjectFound(x, y);
-			objectsFound++;
-		}
 
 		return true;
 	}
